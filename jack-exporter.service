@@ -1,0 +1,13 @@
+[Unit]
+Description=JACK Prometheus Exporter
+After=network.target auditd.service
+
+[Service]
+ExecStart=/usr/local/bin/jack-exporter
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+RestartPreventExitStatus=255
+
+[Install]
+WantedBy=multi-user.target
